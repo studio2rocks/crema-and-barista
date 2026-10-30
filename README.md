@@ -97,7 +97,7 @@ Points are calculated dynamically across 5 calibrated specialty coffee criteria:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/crema-and-craft.git
+   git clone https://github.com/studio2rocks/crema-and-craft.git
    cd crema-and-craft
    ```
 
