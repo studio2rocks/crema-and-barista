@@ -90,8 +90,19 @@ Points are calculated dynamically across 5 calibrated specialty coffee criteria:
 
 ### Prerequisites
 
-- Node.js (v18 or higher recommended)
-- npm or yarn
+- **Node.js**: `v18.0.0` or higher (Node 20+ LTS recommended)
+- **Package Manager**: `npm` (v9+) or `yarn` / `pnpm`
+
+> **Note on `SyntaxError: Unexpected token '.'`**:  
+> If you encounter `SyntaxError: Unexpected token '.' at Loader.moduleStrategy (internal/modules/esm/translators.js:133:18)` when starting the dev server, your active Node.js version is outdated (such as Node 14 or 16), which lacks support for modern ECMAScript features used by Vite and Tailwind CSS.  
+> Fix this by switching to Node 18 or 20 LTS:  
+> ```bash
+> # Using nvm
+> nvm install 20
+> nvm use 20
+> # Verify version is >= 18
+> node -v
+> ```
 
 ### Installation
 
