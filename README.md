@@ -10,6 +10,8 @@
 
 Both car and barista photos are processed on-device with HTML5 Canvas to burn authentic verified date-time stamps and build spec sheets directly into the image.
 
+The platform also includes a robust **Admin Control Center & Cloud Database Hub** featuring administrative authentication, one-click JSON database backups/restores, paddock ledger moderation, and synchronization to remote database hosts (Google Cloud Firestore, Supabase, Custom REST APIs).
+
 ---
 
 ## ✨ Features
@@ -42,6 +44,13 @@ Both car and barista photos are processed on-device with HTML5 Canvas to burn au
 - **Live Feed**: Stream of incoming runs from Crystal Cove, Daikanyama T-Site, Goodwood, and Milan with interactive "Rev Engine 🏁" reactions.
 - **Scoring Sandbox**: Test and forecast any car and coffee configuration before driving out.
 
+### 6. 🔐 Admin Control Center & Database Hub
+- **Administrative Authentication**: Secure role-based access for paddock directors and system administrators with persistent session handling.
+- **Full Database JSON Backup**: Instant export of all paddock runs, driver profiles, build modifications, and coffee tallies into timestamped JSON backup files.
+- **Database Restore & Ingestion**: Restore from backups or merge new datasets with integrity and duplicate verification.
+- **Multi-Cloud Host Synchronization**: Upload and replicate local data to Google Cloud Firestore, Supabase (PostgreSQL), Custom REST APIs, or local Cloud Sandbox relay.
+- **Paddock Ledger Moderation**: Real-time editing, verification toggle, and point recalculations across all recorded vehicle runs.
+
 ---
 
 ## 🎯 Scoring Formula
@@ -57,14 +66,75 @@ Both car and barista photos are processed on-device with HTML5 Canvas to burn au
 
 ---
 
+## 🔐 Admin Portal & Database Management
+
+The application features a built-in **Admin Control Center** designed for meet organizers, paddock stewards, and system administrators.
+
+### 1. Accessing the Admin Portal
+- Click the **"Admin Portal"** button (shield icon) in the header navigation or the lock button on the Paddock Ledger view.
+- A secure authentication modal will prompt for administrator credentials.
+
+### 2. Default Login Credentials
+
+| Field | Value | Notes |
+| :--- | :--- | :--- |
+| **Username** | `admin` | Case-insensitive |
+| **Password** | `paddock2026!` | Can be updated directly inside the Admin Portal Settings |
+| **Role** | Paddock Master / Super Admin | Full read, write, export, sync, and delete permissions |
+
+> 💡 **Password Security**: Once logged in, administrators can change the username and password from the Admin Portal. Credentials and session tokens are encrypted and managed via `authService.ts`.
+
+---
+
+### 3. Admin Portal Capabilities
+
+#### 📊 Dashboard & System Telemetry
+- **Telemetry Cards**: Real-time count of total logged runs, unique registered drivers, total cups of coffee consumed, and localStorage database footprint.
+- **Session Status**: Shows current active session and one-click quick lockout.
+
+#### 🏁 Paddock Ledger Management
+- **Search & Filter**: Search runs by driver name, vehicle make/model, car category, or meet venue.
+- **Direct Record Editing**: Update vehicle year, model, modifications list, cups count, coffee variety, and stance score in real time.
+- **Dynamic Recalculation**: Automatically recalculates total paddock points using the official scoring algorithm upon editing.
+- **Status & Moderation**: Toggle `Verified` status badges or purge spam entries with confirmation protection.
+
+#### 💾 Database Backup & Restore
+- **Export Backup (`.json`)**: Download a complete, timestamped JSON snapshot (`cars-and-coffee-backup-YYYY-MM-DD.json`) containing:
+  - Database schema version
+  - ISO timestamp
+  - Total record count
+  - Full dataset of car runs, mods, coffee logs, and timestamps
+- **Restore Database**: Upload any valid `.json` backup file.
+  - **Overwrite Mode**: Replaces current database with backup contents (ideal for server migrations).
+  - **Merge Mode**: Intelligently deduplicates and merges imported runs with existing entries.
+- **Factory Reset**: Re-seed database with default international Cars & Coffee paddock entries.
+
+#### ☁️ Cloud Database Host Synchronization
+Administrators can configure live database replication to external database providers of their choice:
+
+| Supported Cloud Host | Required Configuration | Behavior |
+| :--- | :--- | :--- |
+| **Google Cloud Firestore** | Project ID, Collection Name (`cars_and_coffee_ledger`), Auth Bearer Token | Replicates paddock documents to Google Cloud Firestore NoSQL collections. |
+| **Supabase (PostgreSQL)** | Project URL, Table Name, Supabase Anon/Service Key | Pushes records to Supabase PostgreSQL via the REST PostgREST endpoint. |
+| **Custom REST API** | Target Endpoint URL (e.g. `https://api.yourdomain.com/v1/runs`), Custom Headers | Dispatches structured JSON payloads (`POST` or `PUT`) to your private backend. |
+| **Cloud Sandbox Relay** | None (Built-in simulation) | Safe testing environment to verify payload integrity and simulated network responses. |
+
+**Key Sync Features:**
+- **Manual "Upload & Sync Database" button**: Pushes full snapshot to the configured host on demand.
+- **Auto-Sync Toggle**: Automatically transmits newly logged Cars & Coffee runs to the remote host whenever a user submits an entry.
+- **Live Sync Logs & Diagnostics**: Inspect HTTP response status, synced record count, and timestamp of the latest sync operation.
+
+---
+
 ## 🛠️ Tech Stack
 
 - **Framework**: React 19 + TypeScript
 - **Styling**: Tailwind CSS v4
 - **Icons**: Lucide React
 - **Graphics**: HTML5 Canvas API (client-side image stamping)
+- **Database Services**: LocalStorage engine + Cloud Database Sync (Firestore, Supabase, REST)
+- **Authentication**: Client-side role-based authentication (`authService.ts`)
 - **Bundler**: Vite
-- **Storage**: Browser LocalStorage persistence
 
 ---
 
@@ -94,7 +164,12 @@ Both car and barista photos are processed on-device with HTML5 Canvas to burn au
    ```
    Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-4. **Build for production**:
+4. **Access the Admin Portal**:
+   - Navigate to the **Paddock Ledger** view.
+   - Click **"Admin Portal"** in the top navigation or top right of the ledger.
+   - Log in with `admin` / `paddock2026!`.
+
+5. **Build for production**:
    ```bash
    npm run build
    ```
