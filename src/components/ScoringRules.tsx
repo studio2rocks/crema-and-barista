@@ -1,36 +1,50 @@
 import React, { useState } from 'react';
 import {
-  Award,
+  Car,
   Coffee,
-  Sliders,
+  Wrench,
+  Award,
   Sparkles,
-  MapPin,
-  CheckCircle2,
-  HelpCircle,
   Calculator,
+  CheckCircle2,
+  MapPin,
 } from 'lucide-react';
-import { COFFEE_TYPES, CUP_SIZES, calculateCoffeePoints, getScoreTier } from '../utils/scoring';
-import { CoffeeTypeKey, CupSizeKey } from '../types/coffee';
+import {
+  CAR_CATEGORIES,
+  COFFEE_TYPES,
+  calculateCarsAndCoffeePoints,
+  getCarsAndCoffeeTier,
+} from '../utils/scoring';
+import { CarCategoryKey, CoffeeTypeKey } from '../types/coffee';
 
 export const ScoringRules: React.FC = () => {
-  // Interactive sandbox state
-  const [testType, setTestType] = useState<CoffeeTypeKey>('pourover');
-  const [testSize, setTestSize] = useState<CupSizeKey>('double');
+  const [testCategory, setTestCategory] = useState<CarCategoryKey>('Air-Cooled Classic');
+  const [testYear, setTestYear] = useState<number>(1987);
+  const [testCarLook, setTestCarLook] = useState<number>(9.8);
+  const [testMods, setTestMods] = useState<string>(
+    'BBS LM wheels, KW V3 coilovers, Titanium exhaust, Stage 2 tune'
+  );
+  const [testCups, setTestCups] = useState<number>(2);
+  const [testCoffeeType, setTestCoffeeType] = useState<CoffeeTypeKey>('flat_white');
+  const [testBarista, setTestBarista] = useState<number>(9.6);
   const [testLocation, setTestLocation] = useState<number>(9.5);
-  const [testBarista, setTestBarista] = useState<number>(9.8);
-  const [testShop, setTestShop] = useState<number>(9.2);
+  const [testShop, setTestShop] = useState<number>(9.4);
   const [testSingleOrigin, setTestSingleOrigin] = useState<boolean>(true);
 
-  const sandboxPoints = calculateCoffeePoints({
-    coffeeType: testType,
-    size: testSize,
-    locationRating: testLocation,
+  const sandboxPoints = calculateCarsAndCoffeePoints({
+    carCategory: testCategory,
+    carYear: testYear,
+    carLookRating: testCarLook,
+    mods: testMods,
+    coffeeCupsCount: testCups,
+    primaryCoffeeType: testCoffeeType,
     baristaLookRating: testBarista,
+    locationRating: testLocation,
     shopLookRating: testShop,
     isSingleOrigin: testSingleOrigin,
   });
 
-  const sandboxTier = getScoreTier(sandboxPoints.totalPoints);
+  const sandboxTier = getCarsAndCoffeeTier(sandboxPoints.totalPoints);
 
   return (
     <div className="space-y-8 animate-in fade-in duration-300">
@@ -38,32 +52,32 @@ export const ScoringRules: React.FC = () => {
       <div className="bg-white dark:bg-stone-900 p-6 sm:p-8 rounded-3xl border border-stone-200 dark:border-stone-800 shadow-sm">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-semibold mb-3">
           <Calculator className="w-3.5 h-3.5" />
-          <span>Transparent Scoring Rubric</span>
+          <span>Cars & Coffee Point Rubric</span>
         </div>
         <h1 className="text-2xl sm:text-3xl font-extrabold font-serif text-stone-900 dark:text-white">
-          The Crema & Craft Global Point System
+          The Official Cars & Coffee Point System
         </h1>
         <p className="mt-2 text-stone-600 dark:text-stone-300 text-xs sm:text-sm max-w-2xl leading-relaxed">
-          The worldwide coffee scoring algorithm evaluates coffee craft objectively. Points are awarded across five verified dimensions: extraction method, cup size ratio, location roastery caliber, barista presentation & latte art, and shop atmosphere.
+          Points are awarded for vehicle engineering, modification caliber, stance presentation, number of coffee cups consumed, extraction craft, barista latte art, and paddock atmosphere.
         </p>
       </div>
 
-      {/* Interactive Sandbox Calculator */}
+      {/* Sandbox */}
       <div className="bg-stone-900 text-white p-6 sm:p-8 rounded-3xl border border-stone-800 shadow-xl">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-stone-800">
           <div>
             <h2 className="text-lg font-bold flex items-center gap-2 text-amber-400">
               <Sparkles className="w-5 h-5" />
-              Interactive Point Sandbox
+              Interactive Cars & Coffee Sandbox
             </h2>
             <div className="text-xs text-stone-400">
-              Simulate any coffee order to forecast its global point yield
+              Forecast your morning meet score before driving out
             </div>
           </div>
 
           <div className="flex items-center gap-3">
             <div className="text-right">
-              <div className="text-[10px] uppercase font-bold text-stone-400">Calculated Yield</div>
+              <div className="text-[10px] uppercase font-bold text-stone-400">Yield</div>
               <div className="font-mono text-3xl font-black text-amber-400 tabular-nums">
                 {sandboxPoints.totalPoints} <span className="text-sm font-normal text-amber-200">pts</span>
               </div>
@@ -74,15 +88,73 @@ export const ScoringRules: React.FC = () => {
           </div>
         </div>
 
-        {/* Sandbox Form */}
+        {/* Form */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-xs">
-          {/* Coffee Type */}
           <div>
-            <label className="block text-stone-300 font-bold mb-2">1. Select Coffee Type</label>
+            <label className="block text-stone-300 font-bold mb-2">1. Car Category</label>
             <select
-              value={testType}
-              onChange={(e) => setTestType(e.target.value as CoffeeTypeKey)}
-              className="w-full bg-stone-800 border border-stone-700 rounded-xl p-2.5 text-stone-100 focus:outline-none focus:ring-1 focus:ring-amber-500 font-medium"
+              value={testCategory}
+              onChange={(e) => setTestCategory(e.target.value as CarCategoryKey)}
+              className="w-full bg-stone-800 border border-stone-700 rounded-xl p-2.5 text-stone-100 font-semibold"
+            >
+              {CAR_CATEGORIES.map((c) => (
+                <option key={c.key} value={c.key}>
+                  {c.key} (+{c.basePts} pts)
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-stone-300 font-bold mb-2">2. Model Year</label>
+            <input
+              type="number"
+              value={testYear}
+              onChange={(e) => setTestYear(parseInt(e.target.value) || 2000)}
+              className="w-full bg-stone-800 border border-stone-700 rounded-xl p-2.5 text-stone-100 font-semibold"
+            />
+            <span className="text-[10px] text-stone-400 mt-1 block">
+              {testYear <= 1999 ? 'Classic era bonus: +4 pts' : 'Modern GT era'}
+            </span>
+          </div>
+
+          <div>
+            <label className="block text-stone-300 font-bold mb-2">3. Number of Coffee Cups</label>
+            <select
+              value={testCups}
+              onChange={(e) => setTestCups(parseInt(e.target.value) || 1)}
+              className="w-full bg-stone-800 border border-stone-700 rounded-xl p-2.5 text-stone-100 font-semibold"
+            >
+              {[1, 2, 3, 4, 5, 6].map((num) => (
+                <option key={num} value={num}>
+                  {num} {num === 1 ? 'cup' : 'cups'} (+{(num - 1) * 4} cup bonus pts)
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="sm:col-span-2 lg:col-span-3">
+            <label className="block text-stone-300 font-bold mb-1">
+              4. Custom Vehicle Mods (Comma-separated)
+            </label>
+            <input
+              type="text"
+              value={testMods}
+              onChange={(e) => setTestMods(e.target.value)}
+              className="w-full bg-stone-800 border border-stone-700 rounded-xl p-2.5 text-stone-100 font-mono text-xs"
+              placeholder="e.g. BBS LM wheels, KW coilovers, titanium exhaust, tune"
+            />
+            <span className="text-[10px] text-amber-400 mt-1 block">
+              Awards +{sandboxPoints.modsBonusPoints} pts mods bonus
+            </span>
+          </div>
+
+          <div>
+            <label className="block text-stone-300 font-bold mb-2">5. Primary Coffee Type</label>
+            <select
+              value={testCoffeeType}
+              onChange={(e) => setTestCoffeeType(e.target.value as CoffeeTypeKey)}
+              className="w-full bg-stone-800 border border-stone-700 rounded-xl p-2.5 text-stone-100 font-semibold"
             >
               {COFFEE_TYPES.map((t) => (
                 <option key={t.key} value={t.key}>
@@ -92,40 +164,25 @@ export const ScoringRules: React.FC = () => {
             </select>
           </div>
 
-          {/* Size */}
           <div>
-            <label className="block text-stone-300 font-bold mb-2">2. Cup Size & Concentration</label>
-            <select
-              value={testSize}
-              onChange={(e) => setTestSize(e.target.value as CupSizeKey)}
-              className="w-full bg-stone-800 border border-stone-700 rounded-xl p-2.5 text-stone-100 focus:outline-none focus:ring-1 focus:ring-amber-500 font-medium"
-            >
-              {CUP_SIZES.map((s) => (
-                <option key={s.key} value={s.key}>
-                  {s.name} ({s.multiplier}x ratio)
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Single origin */}
-          <div className="flex items-center justify-between sm:col-span-2 lg:col-span-1 p-3 bg-stone-800/60 rounded-xl border border-stone-700/60">
-            <div>
-              <div className="font-bold text-stone-200">Single Origin Microlot</div>
-              <div className="text-[10px] text-stone-400">+5 bonus points</div>
+            <div className="flex justify-between font-bold text-stone-300 mb-1">
+              <span>Car Look & Stance</span>
+              <span className="font-mono text-amber-400">{testCarLook.toFixed(1)}/10</span>
             </div>
             <input
-              type="checkbox"
-              checked={testSingleOrigin}
-              onChange={(e) => setTestSingleOrigin(e.target.checked)}
-              className="w-5 h-5 accent-amber-500 cursor-pointer"
+              type="range"
+              min="1"
+              max="10"
+              step="0.1"
+              value={testCarLook}
+              onChange={(e) => setTestCarLook(parseFloat(e.target.value))}
+              className="w-full accent-amber-400 cursor-pointer"
             />
           </div>
 
-          {/* Barista Look Slider */}
           <div>
             <div className="flex justify-between font-bold text-stone-300 mb-1">
-              <span>3. Barista Look & Craft</span>
+              <span>Barista Latte Art Craft</span>
               <span className="font-mono text-amber-400">{testBarista.toFixed(1)}/10</span>
             </div>
             <input
@@ -137,115 +194,50 @@ export const ScoringRules: React.FC = () => {
               onChange={(e) => setTestBarista(parseFloat(e.target.value))}
               className="w-full accent-amber-400 cursor-pointer"
             />
-            <div className="text-[10px] text-stone-400 mt-1 font-mono">
-              Awards +{sandboxPoints.baristaCraftPoints} pts (max 30 pts)
-            </div>
-          </div>
-
-          {/* Shop Look Slider */}
-          <div>
-            <div className="flex justify-between font-bold text-stone-300 mb-1">
-              <span>4. Shop Look & Aesthetic</span>
-              <span className="font-mono text-amber-400">{testShop.toFixed(1)}/10</span>
-            </div>
-            <input
-              type="range"
-              min="1"
-              max="10"
-              step="0.1"
-              value={testShop}
-              onChange={(e) => setTestShop(parseFloat(e.target.value))}
-              className="w-full accent-amber-400 cursor-pointer"
-            />
-            <div className="text-[10px] text-stone-400 mt-1 font-mono">
-              Awards +{sandboxPoints.shopLookPoints} pts (max 20 pts)
-            </div>
-          </div>
-
-          {/* Location Rating Slider */}
-          <div>
-            <div className="flex justify-between font-bold text-stone-300 mb-1">
-              <span>5. Location & Roastery</span>
-              <span className="font-mono text-amber-400">{testLocation.toFixed(1)}/10</span>
-            </div>
-            <input
-              type="range"
-              min="1"
-              max="10"
-              step="0.1"
-              value={testLocation}
-              onChange={(e) => setTestLocation(parseFloat(e.target.value))}
-              className="w-full accent-amber-400 cursor-pointer"
-            />
-            <div className="text-[10px] text-stone-400 mt-1 font-mono">
-              Awards +{sandboxPoints.locationPoints} pts (max 25 pts)
-            </div>
           </div>
         </div>
       </div>
 
-      {/* Reference Tables */}
+      {/* Rubric Reference Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Table 1: Coffee Types */}
         <div className="bg-white dark:bg-stone-900 rounded-3xl border border-stone-200 dark:border-stone-800 p-6 shadow-sm">
-          <h3 className="text-base font-bold text-stone-900 dark:text-white flex items-center gap-2 mb-4">
-            <Coffee className="w-4 h-4 text-amber-500" />
-            Coffee Type Base Points
+          <h3 className="text-base font-bold text-stone-900 dark:text-white flex items-center gap-2 mb-3">
+            <Car className="w-4 h-4 text-amber-500" />
+            Car Category Standards
           </h3>
           <div className="divide-y divide-stone-100 dark:divide-stone-800 text-xs">
-            {COFFEE_TYPES.map((t) => (
-              <div key={t.key} className="py-2.5 flex items-center justify-between">
+            {CAR_CATEGORIES.map((c) => (
+              <div key={c.key} className="py-2.5 flex justify-between items-center">
                 <div>
-                  <div className="font-semibold text-stone-900 dark:text-stone-100">{t.name}</div>
-                  <div className="text-[11px] text-stone-400">{t.description}</div>
+                  <div className="font-bold text-stone-900 dark:text-white">{c.key}</div>
+                  <div className="text-[11px] text-stone-400">{c.description}</div>
                 </div>
-                <div className="font-mono font-bold text-amber-600 dark:text-amber-400 shrink-0 ml-3">
-                  +{t.basePoints} pts
+                <div className="font-mono font-bold text-amber-600 shrink-0 ml-3">
+                  +{c.basePts} pts
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Table 2: Size & Ratings rubric */}
         <div className="space-y-6">
           <div className="bg-white dark:bg-stone-900 rounded-3xl border border-stone-200 dark:border-stone-800 p-6 shadow-sm">
             <h3 className="text-base font-bold text-stone-900 dark:text-white flex items-center gap-2 mb-3">
-              <Award className="w-4 h-4 text-amber-500" />
-              Size & Concentration Multiplier
-            </h3>
-            <div className="divide-y divide-stone-100 dark:divide-stone-800 text-xs">
-              {CUP_SIZES.map((s) => (
-                <div key={s.key} className="py-2.5 flex items-center justify-between">
-                  <div>
-                    <div className="font-semibold text-stone-900 dark:text-stone-100">{s.name}</div>
-                    <div className="text-[11px] text-stone-400">{s.volume}</div>
-                  </div>
-                  <div className="font-mono font-bold text-stone-800 dark:text-stone-200 shrink-0 ml-3">
-                    {s.multiplier}x
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="bg-white dark:bg-stone-900 rounded-3xl border border-stone-200 dark:border-stone-800 p-6 shadow-sm">
-            <h3 className="text-base font-bold text-stone-900 dark:text-white flex items-center gap-2 mb-3">
-              <MapPin className="w-4 h-4 text-amber-500" />
-              Barista Photo & Date-Time Stamp Rules
+              <Wrench className="w-4 h-4 text-amber-500" />
+              Modification & Stamping Rules
             </h3>
             <ul className="text-xs text-stone-600 dark:text-stone-300 space-y-2">
               <li className="flex items-start gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                <span>All uploaded barista and drink photos are stamped with exact local ISO timestamp, shop name, and calculated score.</span>
+                <span>Custom mods (exhaust, suspension, wheels, tune) award up to +15 pts bonus.</span>
               </li>
               <li className="flex items-start gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                <span>Stamped photos are burned directly into canvas, allowing export and proof verification in the global database.</span>
+                <span>Dual photo stamping burns vehicle build specs, mods list, cups tally, and date-time into canvas.</span>
               </li>
               <li className="flex items-start gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                <span>Daily rankings reset at midnight UTC; all-time leaderboard maintains cumulative cup career totals.</span>
+                <span>Multi-cup coffee consumption awards +4 bonus points per additional cup at the meet.</span>
               </li>
             </ul>
           </div>

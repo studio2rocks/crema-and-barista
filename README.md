@@ -1,77 +1,59 @@
-# Crema & Craft ☕
+# Cars & Coffee: Worldwide Paddock & Coffee Tracker 🏎️☕
 
-> **Track daily coffees, score artisanal extractions, burn verified date-time stamps onto barista photos, and compete in the worldwide coffee database.**
+> **Track each Cars & Coffee run: log vehicle year, maker, model, custom modifications, car photo, coffee cups tally, coffee types, and barista picture with verified date-time stamps. Compete in the worldwide Cars & Coffee database.**
 
 ---
 
 ## 🌟 Overview
 
-**Crema & Craft** is a specialty coffee companion application and global competition platform. Every cup of coffee you enjoy is scored objectively across extraction craft, cup size ratio, location roastery caliber, coffee shop aesthetic, and barista presentation. 
+**Cars & Coffee** combines automotive enthusiast culture with specialty third-wave coffee craft. Every morning run you make to a sunrise meet is logged and scored objectively across vehicle rarity, custom build modifications, stance presentation, cups of coffee consumed, extraction quality, and barista latte art.
 
-Photos uploaded with your logs are automatically stamped with an ISO date-time watermark and score verification tag, allowing you to build a verifiable coffee journal and climb the worldwide rankings alongside connoisseurs in Tokyo, Melbourne, Oslo, Milan, and Seattle.
+Both car and barista photos are processed on-device with HTML5 Canvas to burn authentic verified date-time stamps and build spec sheets directly into the image.
 
 ---
 
-## ✨ Key Features
+## ✨ Features
 
-### 1. 📅 Daily Coffee Tracker
-- **Calendar & Daily Shifter**: Log and review cups consumed on any specific calendar date.
-- **Cup Sequence Ledger**: Categorizes drinks as `Cup #1`, `Cup #2`, etc., with exact timestamps.
-- **Bento Summary Metrics**:
-  - Daily Total Points
-  - Cups Consumed & Regimen Status
-  - Average Cup Quality Rating
-  - Estimated Global Standing & Percentile
+### 1. 🏎️ Complete Vehicle & Build Tracking
+- **Car Year**: Full support from vintage classics (1960s–1990s air-cooled icons) to modern GTs.
+- **Car Maker & Model**: Porsche, Nissan, BMW, Chevrolet, Ford, Toyota, Alfa Romeo, Ferrari, Mazda, etc.
+- **Car Categories**: Air-Cooled Classic, JDM Tuner, Euro Classic, American Muscle, Modern GT, Exotic Supercar, Hot Hatch / Restomod, Vintage Roadster.
+- **Modifications (Mods Input)**: Structured and freeform text input for wheels, suspension, exhaust, ECU tunes, aero, and engine modifications.
+- **Car Look & Stance Rating**: 1.0 to 10.0 scale evaluating vehicle presence, paint condition, and build execution.
 
-### 2. 🎯 Multi-Factor Scoring Algorithm
-Points are calculated dynamically across 5 calibrated specialty coffee criteria:
-- **Coffee Type Base Points (15–30 pts)**:
-  - Siphon / Vacuum Brew: `+30 pts`
-  - V60 / Chemex Pour Over: `+28 pts`
-  - Cortado / Gibraltar: `+25 pts`
-  - Flat White: `+24 pts`
-  - Double Espresso / Ristretto: `+23 pts`
-  - AeroPress Specialty: `+24 pts`
-  - Nitro Cold Brew: `+23 pts`
-  - Traditional Macchiato: `+22 pts`
-  - Turkish / Ibrik Cezve: `+22 pts`
-  - Specialty Cappuccino: `+21 pts`
-  - Slow Drip Cold Brew: `+20 pts`
-  - Artisan Latte: `+18 pts`
-  - Specialty Batch Brew / Americano: `+15 pts`
-- **Cup Size & Ratio Multiplier**:
-  - Double / Regular Barista Standard (5–7 oz): `1.15x ratio bonus`
-  - Single / Piccolo: `1.10x ratio bonus`
-  - Triple Shot Artisan: `1.12x ratio bonus`
-  - Standard Cup (8–10 oz): `1.00x`
-  - Large (12–16 oz): `0.92x`
-- **Barista Look & Latte Art Execution (1.0–10.0 $\to$ 6–30 pts)**:
-  - Intricacy of microfoam art (swan, rosetta, tulip), milk gloss, and barista craftsmanship.
-- **Coffee Shop Look & Aesthetic (1.0–10.0 $\to$ 4–20 pts)**:
-  - Cafe architecture, minimalist concrete, warm oak, espresso machine polish, and ambiance.
-- **Location & Roastery Caliber (1.0–10.0 $\to$ 5–25 pts)**:
-  - Neighborhood terroir, on-site roasting, bean transparency, and water profile.
-- **Single-Origin Microlot Bonus**: `+5 pts`.
+### 2. ☕ Coffee Fuel & Barista Tracking
+- **Number of Cups**: Track exact cups consumed during the meet (1 to 6 cups) with incremental fuel points (+4 pts per cup).
+- **Coffee Types**: Multi-select support for V60 Pour Over, Siphon, Cortado / Gibraltar, Flat White, Double Espresso, AeroPress, Nitro Cold Brew, Cappuccino, and more.
+- **Barista Picture & Credit**: Upload or choose artisan barista photos with latte art execution scoring (1.0 to 10.0 scale).
+- **Single-Origin Microlot Bonus**: +5 points for high-altitude single-origin beans.
 
-### 3. 📸 HTML5 Canvas Date-Time Stamp & Watermarker
-- **Photo Upload**: Take live photos with your camera or select from your camera roll (or pick curated artisan presets).
-- **Client-Side Canvas Burn-In**: Automatically burns:
-  - Official timestamp (`TIMESTAMP: OCT 30, 2026 09:15 AM`)
-  - Drink Name & Coffee Roastery/Shop location
-  - Score badge (`98 PTS`)
-  - Barista craft rating
-  - `CREMA & CRAFT VERIFIED` security seal
+### 3. 📸 Dual HTML5 Canvas Stamping & Watermarking
+- **Car Photo Stamp**: Burns official timestamp, meet venue, vehicle year/make/model, modifications summary, coffee cups tally, stance rating, and `CARS & COFFEE VERIFIED` badge onto the photo.
+- **Barista Photo Stamp**: Burns timestamp, drink name, cafe name, barista credit, and latte art craft rating.
 - **Save & Export**: Download high-resolution stamped photos directly for social sharing or inspect in a full-screen lightbox.
 
-### 4. 🌍 Worldwide Coffee Database & Competition
-- **Dynamic Leaderboard**: Calculates your rank in real time against global connoisseurs based on your daily point totals.
-- **Head-to-Head Comparison**: Compare your scores against the World #1 Connoisseur (Tokyo) and Global Community Average across all four scoring pillars.
-- **Leaderboard Views**: Filter between **Today's Global Race** and **All-Time Legends**, or segment by region (Asia-Pacific, Europe, North America, Latin America).
-- **Connoisseur Profiles**: Inspect signature brewing methods, favorite roasteries, and recent verified cups.
+### 4. 🌍 Worldwide Paddock Leaderboard & Competition
+- **Dynamic Paddock Ranking**: Real-time rank calculation comparing your build against global enthusiasts.
+- **Head-to-Head Comparison**: Compare your car build, mods, coffee fuel, and barista score against the World #1 Leader (Tokyo Daikanyama T-Site) and Global Average.
+- **Regional Filters**: Filter by Asia-Pacific, North America, Europe, or by Car Category.
+- **Driver Profiles**: Inspect other enthusiasts' featured cars, full modification lists, and signature coffee orders.
 
-### 5. 📡 Live Global Activity Feed & Interactive Sandbox
-- **Live Feed**: Watch coffee logs stream in from around the globe with interactive "Cheers ☕" reactions.
-- **Point Sandbox**: Test and simulate any order configuration before ordering to forecast its score.
+### 5. 📡 Live Meets Feed & Interactive Sandbox
+- **Live Feed**: Stream of incoming runs from Crystal Cove, Daikanyama T-Site, Goodwood, and Milan with interactive "Rev Engine 🏁" reactions.
+- **Scoring Sandbox**: Test and forecast any car and coffee configuration before driving out.
+
+---
+
+## 🎯 Scoring Formula
+
+| Factor | Points Range | Details |
+| :--- | :--- | :--- |
+| **Car Build & Era** | 25 – 44 pts | Category base (Air-Cooled 28, JDM 26, Muscle 25, Modern GT 25) + Era bonus (pre-1999 +4 pts) + Stance rating |
+| **Mods Bonus** | +0 to +15 pts | Up to +15 pts for comprehensive builds (wheels, suspension, exhaust, tune) |
+| **Coffee Craft & Fuel** | 16 – 47 pts | Coffee type base + Cup count bonus (+4 pts per additional cup) + Single-origin bonus (+5 pts) |
+| **Barista Look & Latte Art** | 6 – 30 pts | 1.0 to 10.0 slider rating for latte art intricacy and microfoam gloss |
+| **Meet Venue & Atmosphere** | 8 – 25 pts | Meet parking atmosphere + cafe roastery aesthetic |
+| **Total Possible Score** | **70 – 150+ pts** | |
 
 ---
 
@@ -80,7 +62,7 @@ Points are calculated dynamically across 5 calibrated specialty coffee criteria:
 - **Framework**: React 19 + TypeScript
 - **Styling**: Tailwind CSS v4
 - **Icons**: Lucide React
-- **Graphics & Watermarking**: HTML5 Canvas API (client-side image processing)
+- **Graphics**: HTML5 Canvas API (client-side image stamping)
 - **Bundler**: Vite
 - **Storage**: Browser LocalStorage persistence
 
@@ -93,23 +75,12 @@ Points are calculated dynamically across 5 calibrated specialty coffee criteria:
 - **Node.js**: `v18.0.0` or higher (Node 20+ LTS recommended)
 - **Package Manager**: `npm` (v9+) or `yarn` / `pnpm`
 
-> **Note on `SyntaxError: Unexpected token '.'`**:  
-> If you encounter `SyntaxError: Unexpected token '.' at Loader.moduleStrategy (internal/modules/esm/translators.js:133:18)` when starting the dev server, your active Node.js version is outdated (such as Node 14 or 16), which lacks support for modern ECMAScript features used by Vite and Tailwind CSS.  
-> Fix this by switching to Node 18 or 20 LTS:  
-> ```bash
-> # Using nvm
-> nvm install 20
-> nvm use 20
-> # Verify version is >= 18
-> node -v
-> ```
-
 ### Installation
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/studio2rocks/crema-and-barista.git
-   cd crema-and-barista
+   git clone https://github.com/studio2rocks/cars-and-coffee.git
+   cd cars-and-coffee
    ```
 
 2. **Install dependencies**:
@@ -128,58 +99,10 @@ Points are calculated dynamically across 5 calibrated specialty coffee criteria:
    npm run build
    ```
 
-5. **Typecheck & Lint**:
-   ```bash
-   npm run lint
-   ```
-
----
-
-## 📁 Project Structure
-
-```text
-├── index.html                   # HTML entry point with Google Fonts
-├── package.json                 # Project dependencies and npm scripts
-├── tsconfig.json                # TypeScript compiler configuration
-├── vite.config.ts               # Vite configuration (port 3000, Tailwind CSS)
-├── src/
-│   ├── main.tsx                 # React DOM mount point
-│   ├── App.tsx                  # Root state orchestration & view router
-│   ├── index.css                # Tailwind CSS v4 imports and theme variables
-│   ├── types/
-│   │   └── coffee.ts            # Type definitions for entries, scoring, and leaderboard
-│   ├── utils/
-│   │   ├── scoring.ts           # Scoring algorithm, formulas, and coffee definitions
-│   │   └── imageStamp.ts        # HTML5 Canvas date-time watermarking engine
-│   ├── data/
-│   │   └── worldwideDatabase.ts # Seed data for worldwide connoisseurs and feeds
-│   ├── components/
-│   │   ├── Header.tsx           # Navigation bar adhering to Top Bar Contract
-│   │   ├── DailyTracker.tsx     # Calendar view, bento summary, and cup ledger
-│   │   ├── CoffeeLogModal.tsx   # 3-step logging modal with live scoring & camera
-│   │   ├── WorldwideLeaderboard.tsx # Leaderboard & head-to-head comparison
-│   │   ├── LiveGlobalFeed.tsx   # Real-time community activity stream
-│   │   └── ScoringRules.tsx     # Point system documentation and sandbox calculator
-│   └── assets/
-│       └── images/              # High-fidelity artisan coffee photography
-```
-
----
-
-## 📜 Scoring Tier Badges
-
-| Tier | Score Range | Description |
-| :--- | :--- | :--- |
-| **Grand Connoisseur** | 95+ pts | World-tier cup with master extraction and elite barista execution |
-| **Specialty Gold** | 85–94 pts | Exemplary artisanal craft and aesthetic coffee shop ambiance |
-| **Third Wave Standard** | 70–84 pts | Solid specialty coffee with great barista care and vibe |
-| **Daily Fuel** | < 70 pts | Casual daily coffee intake |
-
 ---
 
 ## 📄 License & Copyright
 
-Copyright © 2026 Crema & Craft (`studio2rocks`). All rights reserved.
+Copyright © 2026 Cars & Coffee (`studio2rocks`). All rights reserved.
 
 Distributed under the Apache License, Version 2.0. See [`LICENSE`](LICENSE) for full details.
-

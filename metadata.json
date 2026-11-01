@@ -1,6 +1,6 @@
 {
-  "name": "Crema & Craft: Daily Coffee Tracker & Worldwide League",
-  "description": "Track your daily coffees, score coffee type, size, location, barista look with timestamped photo uploads, and cafe aesthetic. Compete in the worldwide coffee database.",
+  "name": "Cars & Coffee: Worldwide Paddock & Coffee Tracker",
+  "description": "Log your cars and coffee runs: track car year, maker, model, mods, car photos, cups consumed, coffee types, and barista photos with stamped verification. Compete on the worldwide leaderboard.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
