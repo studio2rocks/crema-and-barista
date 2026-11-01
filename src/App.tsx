@@ -149,17 +149,19 @@ export default function App() {
         </div>
       )}
 
-      {/* Subtle Anti-Slop Footer */}
-      <footer className="border-t border-stone-200 dark:border-stone-800/80 bg-white dark:bg-stone-900/50 py-6 text-xs text-stone-500 dark:text-stone-400 mt-12">
+      {/* Footer with Copyright & Links */}
+      <footer className="border-t border-stone-200 dark:border-stone-800/80 bg-white dark:bg-stone-900/50 py-8 text-xs text-stone-500 dark:text-stone-400 mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <span className="font-serif font-bold text-stone-900 dark:text-stone-100">
-              Crema & Craft
-            </span>
-            <span>·</span>
-            <span>Worldwide Specialty Coffee League</span>
-            <span>·</span>
-            <span>ISO Date-Time Stamped Verification</span>
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-center sm:text-left">
+            <div className="flex items-center gap-2">
+              <span className="font-serif font-bold text-stone-900 dark:text-stone-100">
+                Crema & Craft
+              </span>
+              <span aria-hidden="true">·</span>
+              <span>Worldwide Specialty Coffee League</span>
+            </div>
+            <span aria-hidden="true" className="hidden sm:inline">·</span>
+            <span>© 2026 Crema & Craft. All rights reserved.</span>
           </div>
 
           <div className="flex items-center gap-4">

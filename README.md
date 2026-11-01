@@ -177,6 +177,9 @@ Points are calculated dynamically across 5 calibrated specialty coffee criteria:
 
 ---
 
-## 📄 License
+## 📄 License & Copyright
 
-Apache-2.0
+Copyright © 2026 Crema & Craft (`studio2rocks`). All rights reserved.
+
+Distributed under the Apache License, Version 2.0. See [`LICENSE`](LICENSE) for full details.
+
